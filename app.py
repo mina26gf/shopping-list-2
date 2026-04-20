@@ -26,13 +26,24 @@ def mark_as_bought(item_name):
     with open(FILE_NAME, "w", encoding="utf-8") as file:
         file.writelines(updated_lines)
 
+def sort_list():
+    with open(FILE_NAME, "r", encoding="utf-8") as file:
+        lines = file.readlines()
+
+    sorted_lines = sorted(lines, key=lambda x: x.startswith("[x]"))
+
+    with open(FILE_NAME, "w", encoding="utf-8") as file:
+        file.writelines(sorted_lines)
+
 
 def main():
     while True:
         print("\n1 - Dodaj produkt")
         print("2 - Pokaż listę")
         print("3 - Oznacz jako kupiony")
-        print("4 - Wyjście")
+        print("4 - Sortuj listę")
+        print("4 - Sortuj listę")
+        print("5 - Wyjście")
 
         choice = input("Wybierz opcję: ")
 
@@ -45,6 +56,8 @@ def main():
             item = input("Podaj nazwę kupionego produktu: ")
             mark_as_bought(item)
         elif choice == "4":
+            sort_list()
+        elif choice == "5":
             break
         else:
             print("Niepoprawna opcja.")
